@@ -28,7 +28,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
     e.preventDefault()
     const newErrors = validateForm()
     if (Object.keys(newErrors).length === 0) {
-      // Имитация входа
       onLogin({ 
         email: formData.email, 
         name: formData.email.split('@')[0],
@@ -40,18 +39,14 @@ const LoginPage = ({ onLogin, onNavigate }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-pink-500 to-purple-600 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Декоративные элементы */}
+    <div className="fixed inset-0 min-h-screen w-full bg-gradient-to-br from-blue-600 via-pink-500 to-purple-600 flex items-center justify-center p-4 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Карточка входа */}
-      <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/20">
-        
-        {/* Логотип и кнопка назад */}
+      <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/20 z-10">
         <div className="flex items-center justify-between mb-8">
           <button 
             onClick={() => onNavigate('home')}
@@ -63,7 +58,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
           <Heart className="w-8 h-8 text-pink-500" />
         </div>
 
-        {/* Заголовок */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
             С возвращением!
@@ -73,10 +67,8 @@ const LoginPage = ({ onLogin, onNavigate }) => {
           </p>
         </div>
 
-        {/* Форма */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          
-          {/* Email */}
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Email
@@ -103,7 +95,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
             )}
           </div>
 
-          {/* Пароль */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Пароль
@@ -137,7 +128,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
             )}
           </div>
 
-          {/* Дополнительные опции */}
           <div className="flex items-center justify-between">
             <label className="flex items-center space-x-2 cursor-pointer">
               <input 
@@ -154,7 +144,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
             </button>
           </div>
 
-          {/* Кнопка входа */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -162,7 +151,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
             Войти
           </button>
 
-          {/* Разделитель */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
@@ -172,7 +160,6 @@ const LoginPage = ({ onLogin, onNavigate }) => {
             </div>
           </div>
 
-          {/* Кнопка регистрации */}
           <button
             type="button"
             onClick={() => onNavigate('register')}

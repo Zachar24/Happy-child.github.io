@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
+import React, { useState, useEffect } from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import HomePage from './Pages/HomePage'
-import AboutPage from './Pages/AboutPage'
-import LoginPage from './Pages/LoginPage'
-import RegisterPage from './Pages/RegisterPage'
+import AboutPage from './pages/AboutPage'
+import CommunityPage from './pages/CommunityPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import AssistantPage from './Pages/AssistantPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentPage])
 
   const handleLogin = (userData) => {
     setIsAuthenticated(true)
@@ -48,6 +54,8 @@ function App() {
           user={user}
           onNavigate={handleNavigate}
         />
+      case 'assistant':
+        return <AssistantPage onNavigate={handleNavigate} />
       case 'login':
         return <LoginPage 
           onLogin={handleLogin} 
@@ -67,8 +75,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Шапка показывается только не на страницах входа/регистрации */}
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-pink-50">
       {currentPage !== 'login' && currentPage !== 'register' && (
         <Header 
           currentPage={currentPage}
@@ -80,11 +87,10 @@ function App() {
         />
       )}
       
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         {renderPage()}
       </main>
 
-      {/* Подвал показывается только не на страницах входа/регистрации */}
       {currentPage !== 'login' && currentPage !== 'register' && (
         <Footer setCurrentPage={setCurrentPage} />
       )}

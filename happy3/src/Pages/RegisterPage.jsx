@@ -99,19 +99,16 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-600 via-purple-500 to-blue-600 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Декоративные элементы */}
+    <div className="fixed inset-0 min-h-screen w-full bg-gradient-to-br from-pink-600 via-purple-500 to-blue-600 flex items-center justify-center p-4 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Карточка регистрации */}
-      <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/20">
+      <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/20 z-10 max-h-[90vh] overflow-y-auto">
         
-        {/* Логотип и кнопка назад */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6">
           <button 
             onClick={() => onNavigate('home')}
             className="group flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors"
@@ -122,8 +119,7 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
           <Heart className="w-8 h-8 text-pink-500" />
         </div>
 
-        {/* Заголовок */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
             Создать аккаунт
           </h2>
@@ -132,12 +128,10 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
           </p>
         </div>
 
-        {/* Форма */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           
-          {/* Имя */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Имя
             </label>
             <div className="relative">
@@ -162,9 +156,8 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             )}
           </div>
 
-          {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
             <div className="relative">
@@ -189,9 +182,8 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             )}
           </div>
 
-          {/* Пароль */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Пароль
             </label>
             <div className="relative">
@@ -216,7 +208,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
               </button>
             </div>
             
-            {/* Индикатор надёжности пароля */}
             {formData.password && (
               <div className="mt-2">
                 <div className="flex items-center space-x-2">
@@ -230,32 +221,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
                     {getStrengthText()}
                   </span>
                 </div>
-                <ul className="mt-2 space-y-1">
-                  <li className="flex items-center text-xs text-gray-600">
-                    {formData.password.length >= 8 ? (
-                      <CheckCircle className="w-3 h-3 text-green-500 mr-1" />
-                    ) : (
-                      <AlertCircle className="w-3 h-3 text-gray-400 mr-1" />
-                    )}
-                    Минимум 8 символов
-                  </li>
-                  <li className="flex items-center text-xs text-gray-600">
-                    {/[A-Z]/.test(formData.password) ? (
-                      <CheckCircle className="w-3 h-3 text-green-500 mr-1" />
-                    ) : (
-                      <AlertCircle className="w-3 h-3 text-gray-400 mr-1" />
-                    )}
-                    Хотя бы одна заглавная буква
-                  </li>
-                  <li className="flex items-center text-xs text-gray-600">
-                    {/[0-9]/.test(formData.password) ? (
-                      <CheckCircle className="w-3 h-3 text-green-500 mr-1" />
-                    ) : (
-                      <AlertCircle className="w-3 h-3 text-gray-400 mr-1" />
-                    )}
-                    Хотя бы одна цифра
-                  </li>
-                </ul>
               </div>
             )}
             
@@ -264,9 +229,8 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             )}
           </div>
 
-          {/* Подтверждение пароля */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Подтвердите пароль
             </label>
             <div className="relative">
@@ -298,7 +262,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             )}
           </div>
 
-          {/* Согласие с условиями */}
           <div className="flex items-start space-x-2">
             <input 
               type="checkbox"
@@ -330,7 +293,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             <p className="text-sm text-red-600">{errors.agreeTerms}</p>
           )}
 
-          {/* Кнопка регистрации */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-pink-500 to-blue-500 text-white py-3 rounded-lg font-semibold hover:from-pink-600 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -338,8 +300,7 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             Зарегистрироваться
           </button>
 
-          {/* Разделитель */}
-          <div className="relative my-6">
+          <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
             </div>
@@ -348,7 +309,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
             </div>
           </div>
 
-          {/* Ссылка на вход */}
           <button
             type="button"
             onClick={() => onNavigate('login')}
@@ -358,25 +318,6 @@ const RegisterPage = ({ onRegister, onNavigate }) => {
           </button>
         </form>
       </div>
-
-      {/* Анимации */}
-      <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   )
 }

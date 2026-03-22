@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zachar24.github.io/Happy-child.github.io/sitemap.xml
